@@ -24,7 +24,7 @@ In this project, the data of Airbnb homes in Munich, Germany were analyzed. The 
 ## File Descriptions<a name="files"></a>
 The following are the files available in this repository:
 * `Project_01_Airbnb_Data_Analysis.ipynb` - a notebook of the analysis the data of Munich city in Germany
-* `\Munich\calendar.csv`and `\Munich\calendar.csv` and `\Munich\calendar.csv` - csvs containing data for analysis of objects in Munich, Germany
+* `\Munich\calendar.csv`and `\Munich\listings.csv` and `\Munich\reviews.csv` - csvs containing data for analysis of objects in Munich, Germany
 
 ## Results<a name="results"></a>
 The results of this analysis can be found on a public blog under following link:
