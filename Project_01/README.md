@@ -11,7 +11,7 @@ This has been done in the framework of Udacity Data Scientist Nano Degree course
 5. [Licensing, Authors, and Acknowledgements](#licensing)
 
 ## Installation
-You will need the standard data science libraries found in the Anaconda distribution of Python. 
+The standard data science libraries in the Anaconda distribution of Python are only needed. 
 The code should run with no issues using Python versions 3.*.
 
 ## Project Motivation<a name="motivation"></a>
