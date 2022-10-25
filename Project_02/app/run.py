@@ -31,13 +31,10 @@ print('Loading data')
 engine = create_engine('sqlite:///../data/ETL_Pipeline.db')
 df = pd.read_sql_table('ETL_Pipeline', engine)
 
-print(df)
-
 # load model
 print('Loading classfier model')
 model = joblib.load("../models/ML_Classifier.pkl")
 
-print(model)
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
@@ -48,12 +45,12 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-
-    military_counts = df.groupby('military').count()['message']
-    military_names = list(military_counts.index)
-
-    fire_counts = df.groupby('fire').count()['message']
-    fire_names = list(fire_counts.index)
+    
+    flood_counts = df.groupby('floods').count()['message']
+    flood_names = list(flood_counts.index)
+    
+    storm_counts = df.groupby('storm').count()['message']
+    storm_names = list(storm_counts.index)
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -79,36 +76,36 @@ def index():
         { # Visualization 2
             'data': [
                 Bar(
-                    x=military_names,
-                    y=military_counts
+                    x=flood_names,
+                    y=flood_counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Messages categorized as Storm',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Military"
+                    'title': "Floods"
                 }
             }
         },
         { # Visualization 3
             'data': [
                 Bar(
-                    x=fire_names,
-                    y=fire_counts
+                    x=storm_names,
+                    y=storm_counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Messages categorized as Storm',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Fire"
+                    'title': "Storm"
                 }
             }
         }

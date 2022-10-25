@@ -57,8 +57,8 @@ def build_model():
     ])
     
     parameters = {
-    'clf__estimator__n_estimators': [5, 100, 200],
-    'clf__estimator__min_samples_split': [2, 4, 10],
+    'clf__estimator__n_estimators': [50],
+    'clf__estimator__min_samples_split': [4],
     }
 
     # create grid search object
@@ -68,8 +68,8 @@ def build_model():
 
 def evaluate_model(model, X_test, Y_test, category_names):
     Y_pred = model.predict(X_test)
-    # print(category_names)
-    # class_report = classification_report(Y_test, Y_pred, target_names=category_names)
+    print(Y_pred)
+    # class_report = classification_report(Y_test, Y_pred)
     # print(class_report)
 
 def save_model(model, model_filepath):
@@ -91,14 +91,14 @@ def main():
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
         X, Y, category_names = load_data(database_filepath)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
-        # print(category_names)        
+        print(category_names)        
 
         print('Building model...')
         model = build_model()
         
         print('Training model...')
         model.fit(X_train, Y_train)
-        
+
         print('Evaluating model...')
         evaluate_model(model, X_test, Y_test, category_names[0])
 
