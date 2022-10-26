@@ -6,6 +6,17 @@ import os
 
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    load_data
+    loading message and category files and saving them into a dataframe
+    
+    Input:
+    messages_filepath filepath to messages csv file
+    categories_filepath filepath to categories csv file
+    
+    Output:
+    df dataframe based on merging of messages and categories files
+    '''
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
     # load categories dataset
@@ -16,6 +27,17 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    '''
+    clean_data
+    clean the dataframe by extracting categories into separate columns
+    converting the columns to integers and dropping duplications in the dataframe
+    
+    Input:
+    df dataframe based on merging of messages and categories files
+    
+    Output:
+    df clean dataframe
+    '''
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';',expand=True)
     # select the first row of the categories dataframe
@@ -34,7 +56,10 @@ def clean_data(df):
         categories[column] = categories[column].astype(str).str[-1]
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
-    # print(categories)
+        
+    categories.replace(2, 1, inplace=True)
+    
+    print(categories)
     # drop the original categories column from `df`
     df.drop(['categories'], axis=1, inplace = True)
     # print(df.head(5))
@@ -46,6 +71,17 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    '''
+    save_data
+    saving the dataframe into a sql databank under defined path
+    
+    Input:
+    df clean dataframe
+    database_filename path for saving the databank
+    
+    Output:
+    databank under defined path
+    '''
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('ETL_Pipeline', engine, index=False)  
 

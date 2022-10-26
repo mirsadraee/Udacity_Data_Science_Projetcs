@@ -25,6 +25,18 @@ from sqlalchemy import create_engine
 import pickle
 
 def load_data(database_filepath):
+    '''
+    load_data
+    loading databk into a dataframe
+    
+    Input:
+    database_filepath filepath to sql databank file
+    
+    Output:
+    X messages in the databank
+    Y categories in the databank
+    category_names of the categories in the databank
+    '''
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table('ETL_Pipeline', engine)
     X = df['message']
@@ -33,7 +45,18 @@ def load_data(database_filepath):
     df.head()
     return X, Y, category_names
 
+
 def tokenize(text):
+    '''
+    tokenize
+    cleaning the text and removing useless information from it
+    
+    Input:
+    text text messages in the databank
+    
+    Output:
+    clean_tokens clean text for machine learning
+    '''
     url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
     detected_urls = re.findall(url_regex, text)
     for url in detected_urls:
@@ -50,6 +73,13 @@ def tokenize(text):
     return clean_tokens
 
 def build_model():
+    '''
+    build_model
+    building a pipeline for building a classifier model
+        
+    Output:
+    model classifier models considering the grid search
+    '''
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer=tokenize)),
     ('tfidf', TfidfTransformer()),
@@ -57,8 +87,8 @@ def build_model():
     ])
     
     parameters = {
-    'clf__estimator__n_estimators': [50],
-    'clf__estimator__min_samples_split': [4],
+    'clf__estimator__n_estimators': [2],
+    'clf__estimator__min_samples_split': [2],
     }
 
     # create grid search object
@@ -67,12 +97,31 @@ def build_model():
     return model
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    '''
+    evaluate_model
+    evaludating the model using test dataset
+        
+    Input:
+    model classifier model
+    X_test input from test dataset
+    Y_test output from test dataset
+    
+    Output:
+    Classification report
+    '''
     Y_pred = model.predict(X_test)
-    print(Y_pred)
-    # class_report = classification_report(Y_test, Y_pred)
-    # print(class_report)
+    class_report = classification_report(Y_test, Y_pred)
+
+    # for col in Y_test.columns:
+    #     print("category: ", col)
+    #     classification_report(Y_test[col], Y_pred[col], category_names)
+    print(class_report)
 
 def save_model(model, model_filepath):
+    '''
+    save_model 
+    save the model into a pickel file
+    '''
     with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
 
@@ -100,7 +149,7 @@ def main():
         model.fit(X_train, Y_train)
 
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names[0])
+        evaluate_model(model, X_test, Y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)
