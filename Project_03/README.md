@@ -29,11 +29,17 @@ README.md
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - 'Recommandations_with_IBM.ipynb'
+    
         'I. Exploratory Data Analysis'
+
         'II. Rank Based Recommendations'
+
         'III. User-User Based Collaborative Filtering'
+
         'IV. Content Based Recommendations (EXTRA - NOT REQUIRED)'
+
         'V. Matrix Factorization'
+
 
 2. Go to 'Recommandations_with_IBM' to see the recommandations results of the simulation
 
