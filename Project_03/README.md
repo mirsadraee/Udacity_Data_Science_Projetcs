@@ -19,7 +19,7 @@ Recommandations_with_IBM.ipynb # jupyter notebook for data processing
 Recommandations_with_IBM.pdf # results of engine recommandations in pdf format     
 Recommandations_with_IBM.html # results of engine recommandations in html format    
 
-### data ###        
+data              
 |- articles_community.csv # data for articles in the community     
 |- user-item-interactions.csv # data for user and item interactions 
 
