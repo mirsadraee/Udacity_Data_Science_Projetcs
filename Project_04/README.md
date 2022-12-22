@@ -14,7 +14,7 @@ Starbucks is one of the most well-konwn chain of coffeehouses and roastery reser
 The provided dataset by Starbucks has to be used in a way to identify which group of people are most responsive to each type of offer, so Starbucks can send the right offer to selected target group and hence decrease its advertisement costs and increase its sales considerably. It is possible to make a tool/model for predicting which customer reacts to which offer at best and will make purchase finally. This can be realized by developing a classifier using the provided the dataset and estimate the behavior of the customers.
 
 ## Installation<a name="installation"></a>
-The standard data science libraries of Python are only needed. The code should run with no issues using Python versions 3.
+The standard data science libraries of Python are only needed. The code should run with no issues using Python versions 3. One may need to install seaborn, sklearn, matplotlib, numpy and pandas libraries.
 
 Following files are available in the repository:                
 1) script:              
@@ -37,7 +37,7 @@ Starbucks_Capstone_notebook.ipynb # jupyter notebook for data processing
         V. modelling, testing and validation of Starbucks data  
 
 
-## Licensing<a name="licensing"></a>
+## Licensing, Authors, and Acknowledgements<a name="licensing"></a>
 The project is made based on Udacity project instructions and motivations.
 
-Thanks to Udacity and Starbucks for providing the data, instruction and training course.
+Special thanks to Udacity for providing the excellent course, projects and instructions and Starbucks for providing the data and instructions. This project helped me alot to summarize most of the points I learned during the course.
