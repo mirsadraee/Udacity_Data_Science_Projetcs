@@ -23,7 +23,7 @@ Starbucks_Capstone_notebook.ipynb # jupyter notebook for data processing
 2) data:              
 |- portfolio.json.pdf # offers provided by Starbucks              
 |- profile.json # profile of customers                
-|- transcription.json # transcription of purchases                
+|- transcript.json # transcription of purchases                
               
 3) README.md              
 
